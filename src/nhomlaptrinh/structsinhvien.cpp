@@ -26,6 +26,9 @@ bool isLeapYear(int year);
 bool isValid (DataTime checker);
 void ascSortByMark (Students &source);//sap xep diem
 void ascSortByName (Students &source);//sap xep ten
+int countStudentsHaveScholarship (Students source);
+void printAmountStudentsHaveScholarship (Students source);
+void digitsListStudentsHaveScholarship (Students source);
 void printValue (DataTime output);// in ra ngay sinh nhat
 void printValue (Student output);//in ra thong tin hoc sinh do
 void printValue (Students output);//in ra cac hoc sinh
@@ -35,11 +38,15 @@ int main (){
     printValue (list);//xuat
     // sap xep tang dan
     ascSortByMark (list);
-    printf ("Asc Sort By Mark : ");
+    printf ("\n\nAsc Sort By Mark : ");
     printValue (list);
     //sap xep theo ten
+    printf ("\n\nAsc Sort By Name : ");
     ascSortByName (list);
     printValue (list);
+    //hoc bong
+    printAmountStudentsHaveScholarship(list);
+    digitsListStudentsHaveScholarship (list);
     return 0;
 }
 void enter (DataTime &input){
@@ -112,7 +119,7 @@ void printValue (Student output){
     printf ("Mark:%.2f\t",output.mark);
 }
 void printValue (Students output){
-    printf ("\nlist of student");
+    printf ("\n\nlist of student");
     for (int position = 0;position < output.amount; position ++ ){
         printf ("\n\nStudent %d is   ",position);
         printValue (output.list[position]);
@@ -141,4 +148,26 @@ void ascSortByName (Students &source){
             }
         }
     }
+}
+int countStudentsHaveScholarship (Students source){
+    int counter = 0;
+    for (int position = 0;position < source.amount; position ++ ){
+        if (source.list[position].mark >= 7){
+            counter ++;
+        }
+    }
+    return counter;
+}
+void printAmountStudentsHaveScholarship (Students source){
+    int counter =  countStudentsHaveScholarship (source);
+    printf ("\nNumber Of Students Have Scholarship: %d",counter);  
+}
+void digitsListStudentsHaveScholarship (Students source){
+    int counter = 0;
+    printf ("\nList Of Students Have Scholarship: ");
+        for (int position = 0;position < source.amount; position ++ ){
+            if (source.list[position].mark >= 7){
+                printValue(source.list[position]);  
+            }
+        }
 }
