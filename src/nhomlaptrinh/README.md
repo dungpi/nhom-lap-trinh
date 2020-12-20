@@ -1,7 +1,7 @@
 # danh sách file
 - mang.cpp: mảng 1 chiều
-1.Nhập, xuất mảng
-2.kiểm tra toàn số chẵn
+-- 1.Nhập, xuất mảng
+-- 2.kiểm tra toàn số chẵn
 
 - structsinhvien.cpp: struct sinh viên 
 1.nhập xuất thông tin sinh viên
