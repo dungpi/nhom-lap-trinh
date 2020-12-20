@@ -27,8 +27,12 @@ bool isValid (DataTime checker);
 void ascSortByMark (Students &source);//sap xep diem
 void ascSortByName (Students &source);//sap xep ten
 int countStudentsHaveScholarship (Students source);
-void printAmountStudentsHaveScholarship (Students source);
+void printAmountStudentsHaveScholarship (Students source);//hoc bong
 void digitsListStudentsHaveScholarship (Students source);
+int countStudentsHaveGoodAcademicPower (Students source);//hoc sinh gioi
+void printNumberOfStudentsHaveGoodAcademicPower (Students source);
+Students findStudentByName (Students source,char name []);
+void digitsStudentByName (Students source,char name[]);
 void printValue (DataTime output);// in ra ngay sinh nhat
 void printValue (Student output);//in ra thong tin hoc sinh do
 void printValue (Students output);//in ra cac hoc sinh
@@ -47,6 +51,13 @@ int main (){
     //hoc bong
     printAmountStudentsHaveScholarship(list);
     digitsListStudentsHaveScholarship (list);
+    //hoc sinh gioi
+    printNumberOfStudentsHaveGoodAcademicPower(list);
+    //tim ten
+    printf ("\nName to search: ");
+    fflush (stdin);
+    gets (search.name);
+    digitsStudentByName (list,search.name);
     return 0;
 }
 void enter (DataTime &input){
@@ -160,14 +171,44 @@ int countStudentsHaveScholarship (Students source){
 }
 void printAmountStudentsHaveScholarship (Students source){
     int counter =  countStudentsHaveScholarship (source);
-    printf ("\nNumber Of Students Have Scholarship: %d",counter);  
+    printf ("\n\nNumber Of Students Have Scholarship: %d",counter);  
 }
 void digitsListStudentsHaveScholarship (Students source){
     int counter = 0;
-    printf ("\nList Of Students Have Scholarship: ");
+    printf ("\n\nList Of Students Have Scholarship:\n ");
         for (int position = 0;position < source.amount; position ++ ){
             if (source.list[position].mark >= 7){
                 printValue(source.list[position]);  
             }
         }
+}
+int countStudentsHaveGoodAcademicPower (Students source){
+    int counter = 0;
+    for (int position = 0;position < source.amount; position ++ ){
+            if (source.list[position].mark >= 8){
+                counter ++;
+            }
+    }
+    return counter;
+}
+void printNumberOfStudentsHaveGoodAcademicPower (Students source){
+    int counter = countStudentsHaveGoodAcademicPower (source);
+    printf ("\n\nNumber Of Students Have Good Academic Power:%d",counter);
+}
+Students findStudentByName (Students source,char name []){
+    Students dest;
+    dest.amount = 0;
+    for (int position = 0;position < source.amount; position ++ ){
+        if (strcmp (source,Students[position].name,name) == 0){
+            dest.amount ++;
+            dest.Students[dest.amount-1] == source.Students[position];
+        }
+    }
+    return dest;
+}
+void digitsStudentByName (Students source,char name[]){
+    Students dest = findStudentByName (source,name);
+    for (int position = 0;position < source.amount; position ++ ){
+        printValue (dest.Students[position]);
+    }
 }
