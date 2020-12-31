@@ -22,6 +22,7 @@ typedef struct Students { //1 list hoc sinh (tong so hoc sinh)
 void enter (DataTime &input);//nhap sinh nhat
 void enter (Student &input);//nhap thong tin hoc sinh do 
 void enter (Students &input);// cac hoc sinh
+// đây là dong them vao
 bool isLeapYear(int year);
 bool isValid (DataTime checker);
 void ascSortByMark (Students &source);//sap xep diem
